@@ -4,6 +4,8 @@
 #include <mutex>
 #include <cstring>
 
+std::mutex mtx_;
+
 Log::Log(std::string log_file_path)
 {
     file_fd_ = open(log_file_path.c_str(), O_CREAT | O_RDONLY | O_WRONLY | O_APPEND, 0664);
@@ -49,6 +51,7 @@ void Log::log_e(const std::string &tag, const std::string &error_msg)
 ssize_t Log::write_log(const std::string &msg)
 {
     std::cout << msg << std::endl;
+    std::lock_guard<std::mutex> lock(mtx_);
     ssize_t write_size = write(file_fd_, msg.c_str(), msg.length());
     if (write_size <= 0)
     {
