@@ -9,7 +9,8 @@
 
 std::mutex mtx_;
 
-Log::Log(std::string log_file_path)
+
+wyan::log::Log::Log(std::string log_file_path)
 {
     file_fd_ = open(log_file_path.c_str(), O_CREAT | O_RDONLY | O_WRONLY | O_APPEND, 0664);
     if (file_fd_ <= 0)
@@ -18,7 +19,7 @@ Log::Log(std::string log_file_path)
     }
 }
 
-Log::~Log()
+wyan::log::Log::~Log()
 {
     if (file_fd_ >= 0)
     {
@@ -27,31 +28,31 @@ Log::~Log()
     }
 }
 
-void Log::log_i(const std::string &tag, const std::string &info_msg)
+void wyan::log::Log::log_i(const std::string &tag, const std::string &info_msg)
 {
     std::string msg = tag + " " + info_msg;
     write_log(msg);
 }
 
-void Log::log_d(const std::string &tag, const std::string &debug_msg)
+void wyan::log::Log::log_d(const std::string &tag, const std::string &debug_msg)
 {
     std::string msg = tag + " " + debug_msg;
     write_log(msg);
 }
 
-void Log::log_w(const std::string &tag, const std::string &warn_msg)
+void wyan::log::Log::log_w(const std::string &tag, const std::string &warn_msg)
 {
     std::string msg = tag + " " + warn_msg;
     write_log(msg);
 }
 
-void Log::log_e(const std::string &tag, const std::string &error_msg)
+void wyan::log::Log::log_e(const std::string &tag, const std::string &error_msg)
 {
     std::string msg = tag + " " + error_msg;
     write_log(msg);
 }
 
-ssize_t Log::write_log(const std::string &msg)
+ssize_t wyan::log::Log::write_log(const std::string &msg)
 {
     struct timeval tv;
     gettimeofday(&tv, nullptr);
