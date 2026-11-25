@@ -14,20 +14,19 @@ wyan::player::WyanPlayer::~WyanPlayer()
     }
     avformat_close_input(&avFormatContext_);
     avformat_network_deinit();
-    
 }
 
 int wyan::player::WyanPlayer::init()
 {
-    //全局初始化网络组件
+    // 全局初始化网络组件
     return avformat_network_init();
 }
 
-int wyan::player::WyanPlayer::openMediaFile(std::string file_path) {
+int wyan::player::WyanPlayer::openMediaFile(std::string file_path)
+{
     this->file_path_ = file_path;
     return avformat_open_input(&avFormatContext_, file_path.c_str(), nullptr, nullptr);
 }
-
 
 void wyan::player::WyanPlayer::profileMediaFile()
 {
@@ -38,7 +37,6 @@ void wyan::player::WyanPlayer::profileMediaFile()
     av_dump_format(avFormatContext_, 0, this->file_path_.c_str(), 0);
 }
 
-
 void wyan::player::WyanPlayer::findVideoStreamInfo()
 {
     if (avFormatContext_ == nullptr)
@@ -48,7 +46,6 @@ void wyan::player::WyanPlayer::findVideoStreamInfo()
     avformat_find_stream_info(avFormatContext_, nullptr);
     videoIndex_ = av_find_best_stream(avFormatContext_, AVMEDIA_TYPE_VIDEO, -1, -1, nullptr, 0);
 }
-
 
 int wyan::player::WyanPlayer::openVideoCodec()
 {
@@ -89,4 +86,33 @@ int wyan::player::WyanPlayer::openVideoCodec()
               << std::endl;
     return 0;
 }
+
+bool pump_sdl_event()
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_QUIT)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void render_frame(SDL_Renderer *renderer,
+                  SDL_Texture *texture,
+                  AVFrame *frame)
+{
+    SDL_UpdateYUVTexture(texture, nullptr,
+                         frame->data[0], frame->linesize[0], // Y
+                         frame->data[1], frame->linesize[1], // U
+                         frame->data[2], frame->linesize[2]  // V
+    );
+
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
+}
+
 
