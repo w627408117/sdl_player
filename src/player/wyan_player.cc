@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "log/log.h"
+#include "queue/ring_buffer.h"
 
 using namespace wyan::player;
 
@@ -119,8 +120,9 @@ void render_frame(SDL_Renderer *renderer,
     SDL_RenderPresent(renderer);
 }
 
-int WyanPlayer::decodeVideo() {
-     if (!avFormatContext_ || !avCodecContext_)
+int WyanPlayer::decodeVideo()
+{
+    if (!avFormatContext_ || !avCodecContext_)
     {
         return -1;
     }
@@ -255,7 +257,6 @@ void WyanPlayer::findAudioStreamInfo()
     audioIndex_ = av_find_best_stream(avFormatContext_, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
 }
 
-
 int WyanPlayer::openAudioCodec()
 {
     if (avFormatContext_ == nullptr || audioIndex_ < 0)
@@ -292,4 +293,102 @@ int WyanPlayer::openAudioCodec()
 
     LOGD("Player", "音频解码器已经打开了");
     return 0;
+}
+
+int WyanPlayer::decodeAudio()
+{
+    LOGD("Player", "decodeAudio");
+    if (!avCodecContext_ || !avFormatContext_)
+    {
+        LOGD("Player", "avCodecContext 或者 avFormatContext 出现问题");
+        return -1;
+    }
+
+    SwrContext *swr_context = swr_alloc();
+    if (swr_context == nullptr)
+    {
+        LOGW("wyan", "open swr_context fail");
+        avcodec_free_context(&avCodecContext_);
+        avformat_close_input(&avFormatContext_);
+        return -1;
+    }
+
+    av_opt_set_channel_layout(swr_context, "in_channel_layout", avCodecContext_->channel_layout, 0);
+    av_opt_set_int(swr_context, "in_sample_rate", avCodecContext_->sample_rate, 0);
+    av_opt_set_sample_fmt(swr_context, "in_sample_fmt", avCodecContext_->sample_fmt, 0);
+
+    uint64_t dst_channel_layout = AV_CH_LAYOUT_STEREO;
+    av_opt_set_channel_layout(swr_context, "out_channel_layout", dst_channel_layout, 0);
+    av_opt_set_int(swr_context, "out_sample_rate", SAMPLE_RATE, 0);
+    av_opt_set_sample_fmt(swr_context, "out_sample_fmt", AV_SAMPLE_FMT_FLT, 0);
+
+    if (swr_init(swr_context) < 0)
+    {
+        LOGD("wyan", "swr init fail");
+        avcodec_free_context(&avCodecContext_);
+        avformat_close_input(&avFormatContext_);
+        swr_free(&swr_context);
+        return 0;
+    }
+
+    AVFrame *audio_frame = av_frame_alloc();
+    AVPacket *audio_packet = av_packet_alloc();
+
+    wyan::buffer::RingBuffer *audio_buffer = new wyan::buffer::RingBuffer();
+    if (audio_buffer == nullptr)
+    {
+        LOGD("Player", "audio queue malloc fail");
+        return -1;
+    }
+
+    while (av_read_frame(avFormatContext_, audio_packet) >= 0)
+    {
+        if (audio_packet->stream_index == audioIndex_)
+        {
+            int ret = avcodec_send_packet(avCodecContext_, audio_packet);
+            if (ret < 0)
+            {
+                LOGD("wyan", "avcodec send audio package fail");
+                return -1;
+            }
+        }
+
+        while (true)
+        {
+            int ret = avcodec_receive_frame(avCodecContext_, audio_frame);
+            if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
+            {
+                break;
+            }
+            else if (ret < 0)
+            {
+                return -1;
+            }
+
+            const int dst_nb_samples = ceil(audio_frame->nb_samples * ((float)SAMPLE_RATE / audio_frame->sample_rate));
+            const int out_size = av_samples_get_buffer_size(NULL, 2, dst_nb_samples, AV_SAMPLE_FMT_FLT, 0);
+            uint8_t *out_buf = (uint8_t *)av_malloc(out_size);
+            const int out_sample_count = swr_convert(swr_context, &out_buf, dst_nb_samples, (const uint8_t **)audio_frame->data, audio_frame->nb_samples);
+
+            if (out_sample_count < 0)
+            {
+                av_free(out_buf);
+                av_frame_unref(audio_frame);
+                continue;
+            }
+
+            int actual_out_size = out_sample_count * 2 * av_get_bytes_per_sample(AV_SAMPLE_FMT_FLT);
+            audio_buffer->push(out_buf, actual_out_size);
+            av_free(out_buf);
+        }
+        av_packet_unref(audio_packet);
+        av_frame_unref(audio_frame);
+    }
+
+
+    avcodec_free_context(&avCodecContext_);
+    avformat_close_input(&avFormatContext_);
+    swr_free(&swr_context);
+
+    return true;
 }

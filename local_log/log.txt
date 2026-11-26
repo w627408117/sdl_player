@@ -968,3 +968,6 @@
 [2026-11-26 15:05:09.503] [TID:67302] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] frame # 481, pts= 246272, width= 1280, height= 720
 [2026-11-26 15:05:09.631] [TID:67302] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] frame # 482, pts= 246784, width= 1280, height= 720
 [2026-11-26 15:05:09.934] [TID:67302] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 总解码帧数 = 483
+[2026-11-26 17:50:36.618] [TID:5538] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 18:49:45.627] [TID:16846] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 18:49:45.627] [TID:16846] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
