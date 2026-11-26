@@ -3,3 +3,5 @@
 [2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
 [2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
 [2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
+[2026-11-26 13:37:59.942] [TID:48612] [player] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] avformat_open_input failed: No such file or directory (open_status: -2)
+[2026-11-26 13:38:19.338] [TID:48735] [player] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] avformat_open_input failed: No such file or directory (error_code: -2)

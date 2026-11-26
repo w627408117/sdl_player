@@ -35,6 +35,7 @@ void WyanPlayer::profileMediaFile()
 {
     if (avFormatContext_ == nullptr)
     {
+        LOGD("wyan", "avFormatContext_ == nullptr return");
         return;
     }
     av_dump_format(avFormatContext_, 0, this->file_path_.c_str(), 0);
