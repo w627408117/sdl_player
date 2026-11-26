@@ -2,7 +2,6 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "log/log.h"
-#include "queue/ring_buffer.h"
 
 using namespace wyan::player;
 
@@ -20,6 +19,11 @@ WyanPlayer::~WyanPlayer()
     }
     avformat_close_input(&avFormatContext_);
     avformat_network_deinit();
+    if (audio_buffer_ != nullptr)
+    {
+        delete audio_buffer_;
+        audio_buffer_ = nullptr;
+    }
 }
 
 int WyanPlayer::init()
@@ -295,6 +299,56 @@ int WyanPlayer::openAudioCodec()
     return 0;
 }
 
+wyan::buffer::RingBuffer *WyanPlayer::get_buffer()
+{
+    return audio_buffer_;
+}
+
+void sdl_audio_callback(void *user_data, uint8_t *stream, int len)
+{
+    WyanPlayer *self = static_cast<WyanPlayer *>(user_data);
+    SDL_memset(stream, 0, len);
+    if (self->get_buffer())
+    {
+        self->get_buffer()->pop(stream, len);
+    } else {
+        LOGE("Player", "audio buffer error");
+    }
+}
+
+int WyanPlayer::init_sdl_audio()
+{
+    if (SDL_Init(SDL_INIT_AUDIO) < 0)
+    {
+        LOGE("Player", "SDL_Init failed: %s", SDL_GetError());
+        return -1;
+    }
+
+    LOGE("Player", "init_sdl_audio success");
+
+    audio_buffer_ = new wyan::buffer::RingBuffer();
+
+    SDL_AudioSpec want_spec;
+    SDL_zero(want_spec);
+    want_spec.freq = SAMPLE_RATE;
+    want_spec.format = AUDIO_F32SYS;
+    want_spec.channels = 2;
+    want_spec.samples = 1024;
+    want_spec.callback = sdl_audio_callback;
+    want_spec.userdata = this;
+
+    if (SDL_OpenAudio(&want_spec, nullptr) < 0)
+    {
+        LOGD("Player", "SDL_OpenAudio error: %s", SDL_GetError());
+        return -1;
+    } else {
+        LOGD("Player", "open audio device success");
+    }
+
+    SDL_PauseAudio(0);
+    return 0;
+}
+
 int WyanPlayer::decodeAudio()
 {
     LOGD("Player", "decodeAudio");
@@ -333,9 +387,7 @@ int WyanPlayer::decodeAudio()
 
     AVFrame *audio_frame = av_frame_alloc();
     AVPacket *audio_packet = av_packet_alloc();
-
-    wyan::buffer::RingBuffer *audio_buffer = new wyan::buffer::RingBuffer();
-    if (audio_buffer == nullptr)
+    if (audio_buffer_ == nullptr)
     {
         LOGD("Player", "audio queue malloc fail");
         return -1;
@@ -378,13 +430,12 @@ int WyanPlayer::decodeAudio()
             }
 
             int actual_out_size = out_sample_count * 2 * av_get_bytes_per_sample(AV_SAMPLE_FMT_FLT);
-            audio_buffer->push(out_buf, actual_out_size);
+            audio_buffer_->push(out_buf, actual_out_size);
             av_free(out_buf);
         }
         av_packet_unref(audio_packet);
         av_frame_unref(audio_frame);
     }
-
 
     avcodec_free_context(&avCodecContext_);
     avformat_close_input(&avFormatContext_);

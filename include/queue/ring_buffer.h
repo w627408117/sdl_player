@@ -10,6 +10,8 @@ namespace wyan
         class RingBuffer
         {
             public:
+                RingBuffer() = default;
+                ~RingBuffer();
                 void push(uint8_t *data, int size);
                 int pop(uint8_t *dst, int size);
             private:

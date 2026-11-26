@@ -24,6 +24,7 @@ int main()
 
     wyan_player.findAudioStreamInfo();
     wyan_player.openAudioCodec();
+    wyan_player.init_sdl_audio();
     wyan_player.decodeAudio();
     return 0;
 }

@@ -971,3 +971,19 @@
 [2026-11-26 17:50:36.618] [TID:5538] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
 [2026-11-26 18:49:45.627] [TID:16846] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
 [2026-11-26 18:49:45.627] [TID:16846] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
+[2026-11-26 21:05:13.277] [TID:42492] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 21:05:13.400] [TID:42492] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
+[2026-11-26 21:05:17.581] [TID:42538] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 21:05:17.584] [TID:42538] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
+[2026-11-26 21:06:45.000] [TID:42999] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 21:06:45.001] [TID:42999] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] init_sdl_audio success
+[2026-11-26 21:06:45.003] [TID:42999] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] open audio device success
+[2026-11-26 21:06:45.003] [TID:42999] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
+[2026-11-26 21:08:01.638] [TID:43381] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 21:08:01.639] [TID:43381] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] init_sdl_audio success
+[2026-11-26 21:08:01.641] [TID:43381] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] open audio device success
+[2026-11-26 21:08:01.641] [TID:43381] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio
+[2026-11-26 21:13:49.487] [TID:44451] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] 音频解码器已经打开了
+[2026-11-26 21:13:49.495] [TID:44451] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] init_sdl_audio success
+[2026-11-26 21:13:49.500] [TID:44451] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] open audio device success
+[2026-11-26 21:13:49.501] [TID:44451] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/player/wyan_player.cc] decodeAudio

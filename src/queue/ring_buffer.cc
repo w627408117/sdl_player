@@ -3,6 +3,10 @@
 
 using namespace wyan::buffer;
 
+RingBuffer::~RingBuffer() {
+    buffer_.clear();
+}
+
 void RingBuffer::push(uint8_t *data, int size) {
     std::lock_guard<std::mutex> lock(mutex_);
     buffer_.insert(buffer_.end(), data, data + size);
