@@ -432,6 +432,7 @@ int WyanPlayer::decodeAudio()
             int actual_out_size = out_sample_count * 2 * av_get_bytes_per_sample(AV_SAMPLE_FMT_FLT);
             audio_buffer_->push(out_buf, actual_out_size);
             av_free(out_buf);
+            SDL_Delay(20);
         }
         av_packet_unref(audio_packet);
         av_frame_unref(audio_frame);
