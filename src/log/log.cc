@@ -7,9 +7,6 @@
 #include <sys/time.h>
 #include <sys/syscall.h>
 
-std::mutex mtx_;
-
-
 wyan::log::Log::Log(std::string log_file_path)
 {
     file_fd_ = open(log_file_path.c_str(), O_CREAT | O_RDONLY | O_WRONLY | O_APPEND, 0664);
@@ -28,28 +25,44 @@ wyan::log::Log::~Log()
     }
 }
 
-void wyan::log::Log::log_i(const std::string &tag, const std::string &info_msg)
+void wyan::log::Log::log_i(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
-    std::string msg = tag + " " + info_msg;
-    write_log(msg);
+    char buffer[1024];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+    write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_d(const std::string &tag, const std::string &debug_msg)
+void wyan::log::Log::log_d(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
-    std::string msg = tag + " " + debug_msg;
-    write_log(msg);
+    char buffer[1024];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+    write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_w(const std::string &tag, const std::string &warn_msg)
+void wyan::log::Log::log_w(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
-    std::string msg = tag + " " + warn_msg;
-    write_log(msg);
+    char buffer[1024];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+    write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_e(const std::string &tag, const std::string &error_msg)
+void wyan::log::Log::log_e(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
-    std::string msg = tag + " " + error_msg;
-    write_log(msg);
+    char buffer[1024];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+    write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
 ssize_t wyan::log::Log::write_log(const std::string &msg)
@@ -66,7 +79,7 @@ ssize_t wyan::log::Log::write_log(const std::string &msg)
     pid_t tid = static_cast<pid_t>(syscall(SYS_gettid));
     std::string str_log = "[" + std::string(time_buf) + "] [TID:" + std::to_string(tid) + "] " + msg + "\n";
     std::cout << str_log;
-    
+
     std::lock_guard<std::mutex> lock(mtx_);
     ssize_t write_size = write(file_fd_, str_log.c_str(), str_log.length());
     if (write_size <= 0)
