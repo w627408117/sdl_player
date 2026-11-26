@@ -5,6 +5,8 @@
 
 using namespace wyan::player;
 
+const static unsigned int SAMPLE_RATE = 44100;
+
 WyanPlayer::WyanPlayer()
 {
 }
@@ -243,3 +245,51 @@ int WyanPlayer::decodeVideo() {
     return frame_count;
 }
 
+void WyanPlayer::findAudioStreamInfo()
+{
+    if (avFormatContext_ == nullptr)
+    {
+        return;
+    }
+    avformat_find_stream_info(avFormatContext_, nullptr);
+    audioIndex_ = av_find_best_stream(avFormatContext_, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
+}
+
+
+int WyanPlayer::openAudioCodec()
+{
+    if (avFormatContext_ == nullptr || audioIndex_ < 0)
+    {
+        return -1;
+    }
+
+    AVStream *avStream = avFormatContext_->streams[audioIndex_];
+    AVCodecParameters *avCodecParameters = avStream->codecpar;
+    const AVCodec *avCodec = avcodec_find_decoder(avCodecParameters->codec_id);
+    if (avCodec == nullptr)
+    {
+        return -1;
+    }
+
+    avCodecContext_ = avcodec_alloc_context3(avCodec);
+    if (!avCodecContext_)
+    {
+        return -1;
+    }
+
+    int ret = avcodec_parameters_to_context(avCodecContext_, avCodecParameters);
+    if (ret < 0)
+    {
+        return ret;
+    }
+
+    avCodecContext_->thread_count = 0;
+    ret = avcodec_open2(avCodecContext_, avCodec, nullptr);
+    if (ret < 0)
+    {
+        return -1;
+    }
+
+    LOGD("Player", "音频解码器已经打开了");
+    return 0;
+}
