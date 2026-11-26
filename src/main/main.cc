@@ -18,12 +18,12 @@ int main()
     }
 
     wyan_player.profileMediaFile();
-    wyan_player.findVideoStreamInfo();
-    wyan_player.openVideoCodec();
-    wyan_player.decodeVideo();
+    // wyan_player.findVideoStreamInfo();
+    // wyan_player.openVideoCodec();
+    // wyan_player.decodeVideo();
 
-    // wyan_player.findAudioStreamInfo();
-    // wyan_player.openAudioCodec();
-    // wyan_player.decodeAudio();
+    wyan_player.findAudioStreamInfo();
+    wyan_player.openAudioCodec();
+    wyan_player.decodeAudio();
     return 0;
 }
