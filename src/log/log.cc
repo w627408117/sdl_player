@@ -6,8 +6,15 @@
 #include <ctime>
 #include <sys/time.h>
 #include <sys/syscall.h>
+#include <cstdarg>
+#include <cstdio>
 
-wyan::log::Log::Log(std::string log_file_path)
+using namespace wyan::log;
+
+int Log::file_fd_ = -1;
+std::mutex Log::mtx_;
+
+Log::Log(std::string log_file_path)
 {
     file_fd_ = open(log_file_path.c_str(), O_CREAT | O_RDONLY | O_WRONLY | O_APPEND, 0664);
     if (file_fd_ <= 0)
@@ -16,7 +23,7 @@ wyan::log::Log::Log(std::string log_file_path)
     }
 }
 
-wyan::log::Log::~Log()
+Log::~Log()
 {
     if (file_fd_ >= 0)
     {
@@ -25,7 +32,7 @@ wyan::log::Log::~Log()
     }
 }
 
-void wyan::log::Log::log_i(const std::string &tag, const std::string &file_name, const char *fmt, ...)
+void Log::log_i(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
     char buffer[1024];
     va_list args;
@@ -35,7 +42,7 @@ void wyan::log::Log::log_i(const std::string &tag, const std::string &file_name,
     write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_d(const std::string &tag, const std::string &file_name, const char *fmt, ...)
+void Log::log_d(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
     char buffer[1024];
     va_list args;
@@ -45,7 +52,7 @@ void wyan::log::Log::log_d(const std::string &tag, const std::string &file_name,
     write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_w(const std::string &tag, const std::string &file_name, const char *fmt, ...)
+void Log::log_w(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
     char buffer[1024];
     va_list args;
@@ -55,7 +62,7 @@ void wyan::log::Log::log_w(const std::string &tag, const std::string &file_name,
     write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-void wyan::log::Log::log_e(const std::string &tag, const std::string &file_name, const char *fmt, ...)
+void Log::log_e(const std::string &tag, const std::string &file_name, const char *fmt, ...)
 {
     char buffer[1024];
     va_list args;
@@ -65,7 +72,7 @@ void wyan::log::Log::log_e(const std::string &tag, const std::string &file_name,
     write_log("[" + tag + "] [I] [" + file_name + "] " + std::string(buffer));
 }
 
-ssize_t wyan::log::Log::write_log(const std::string &msg)
+ssize_t Log::write_log(const std::string &msg)
 {
     struct timeval tv;
     gettimeofday(&tv, nullptr);

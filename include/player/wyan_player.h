@@ -31,9 +31,6 @@ namespace wyan
             void findAudioStreamInfo();
             int openAudioCodec();
             int decodeAudio();
-
-            int init();
-
         private:
             AVFormatContext *avFormatContext_ = nullptr;
             std::string file_path_;

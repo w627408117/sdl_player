@@ -3,11 +3,13 @@
 #include <iostream>
 #include "log/log.h"
 
-wyan::player::WyanPlayer::WyanPlayer()
+using namespace wyan::player;
+
+WyanPlayer::WyanPlayer()
 {
 }
 
-wyan::player::WyanPlayer::~WyanPlayer()
+WyanPlayer::~WyanPlayer()
 {
     if (avFormatContext_ == nullptr)
     {
@@ -17,19 +19,19 @@ wyan::player::WyanPlayer::~WyanPlayer()
     avformat_network_deinit();
 }
 
-int wyan::player::WyanPlayer::init()
+int WyanPlayer::init()
 {
     // 全局初始化网络组件
     return avformat_network_init();
 }
 
-int wyan::player::WyanPlayer::openMediaFile(std::string file_path)
+int WyanPlayer::openMediaFile(std::string file_path)
 {
     this->file_path_ = file_path;
     return avformat_open_input(&avFormatContext_, file_path.c_str(), nullptr, nullptr);
 }
 
-void wyan::player::WyanPlayer::profileMediaFile()
+void WyanPlayer::profileMediaFile()
 {
     if (avFormatContext_ == nullptr)
     {
@@ -38,7 +40,7 @@ void wyan::player::WyanPlayer::profileMediaFile()
     av_dump_format(avFormatContext_, 0, this->file_path_.c_str(), 0);
 }
 
-void wyan::player::WyanPlayer::findVideoStreamInfo()
+void WyanPlayer::findVideoStreamInfo()
 {
     if (avFormatContext_ == nullptr)
     {
@@ -48,7 +50,7 @@ void wyan::player::WyanPlayer::findVideoStreamInfo()
     videoIndex_ = av_find_best_stream(avFormatContext_, AVMEDIA_TYPE_VIDEO, -1, -1, nullptr, 0);
 }
 
-int wyan::player::WyanPlayer::openVideoCodec()
+int WyanPlayer::openVideoCodec()
 {
     if (avFormatContext_ == nullptr || videoIndex_ < 0)
     {
@@ -116,7 +118,7 @@ void render_frame(SDL_Renderer *renderer,
     SDL_RenderPresent(renderer);
 }
 
-int wyan::player::WyanPlayer::decodeVideo() {
+int WyanPlayer::decodeVideo() {
      if (!avFormatContext_ || !avCodecContext_)
     {
         return -1;

@@ -1,0 +1,5 @@
+[2026-11-26 11:55:37.653] [TID:29636] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
+[2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
+[2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
+[2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
+[2026-11-26 11:56:42.999] [TID:29953] [wyan] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] 日志创建成功
