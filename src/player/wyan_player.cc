@@ -85,9 +85,7 @@ int WyanPlayer::openVideoCodec()
         return -1;
     }
 
-    std::cout << "解码器已打开: " << avCodec->name
-              << "  " << avCodecContext_->width << "x" << avCodecContext_->height
-              << std::endl;
+    LOGD("player", "解码器已打开: %s,  width: %d,  height: %d", avCodec->name, avCodecContext_->width, avCodecContext_->height);
     return 0;
 }
 
@@ -211,13 +209,14 @@ int WyanPlayer::decodeVideo() {
                     int ret = avcodec_receive_frame(avCodecContext_, avFrame);
                     if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
                     {
-                        LOGD("wyan", "receive_frame AVERROR(EAGAIN) || ret == AVERROR_EOF");
                         break;
                     }
 
                     if (ret < 0)
                     {
-                        LOGD("wyan", "receive_frame error");
+                        char err_buf[AV_ERROR_MAX_STRING_SIZE] = {0};
+                        av_strerror(ret, err_buf, sizeof(err_buf));
+                        LOGD("wyan", "receive_frame error, err_code: %d, err_msg: %s", ret, err_buf);
                         break;
                     }
 

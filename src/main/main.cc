@@ -7,6 +7,7 @@ int main()
     wyan::log::Log log("../local_log/log.txt");
     wyan::player::WyanPlayer wyan_player;
     wyan_player.init();
+    
     int open_status = wyan_player.openMediaFile("../media_test_20s.mp4");
     if (open_status < 0)
     {
@@ -17,12 +18,9 @@ int main()
     }
 
     wyan_player.profileMediaFile();
-
-    // wyan_player.findVideoStreamInfo();
-
-    // wyan_player.openVideoCodec();
-
-    // wyan_player.decodeVideo();
+    wyan_player.findVideoStreamInfo();
+    wyan_player.openVideoCodec();
+    wyan_player.decodeVideo();
 
     // wyan_player.findAudioStreamInfo();
     // wyan_player.openAudioCodec();
