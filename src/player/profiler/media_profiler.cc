@@ -37,7 +37,20 @@ int MediaProfiler::profile_media()
         LOGD("Profiler", "media file not open!");
         return -1;
     }
-    LOGD("Profiler", "file_name: %s", avformat_context_->filename);
+    LOGD("Profiler", "media file name: %s", avformat_context_->filename);
     
+    //封装容器中，最长的时长，可能是音频或者视频的
+    int64_t media_duration =  avformat_context_->duration / AV_TIME_BASE;
+    LOGD("Profiler", "media duration: %d", media_duration);
+
+    //封装容器 码率的总和
+    LOGD("Profiler", "media bit rate: %d", avformat_context_->bit_rate);
+
+
+    LOGD("Profiler", "media nb stream: %d", avformat_context_->nb_streams);
+
+    //取这些流中最小的那个流的时间戳当作start_time
+    LOGD("Profiler", "media start time: %d", avformat_context_->start_time);
+
     return 0;
 }
