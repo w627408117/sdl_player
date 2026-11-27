@@ -37,20 +37,63 @@ int MediaProfiler::profile_media()
         LOGD("Profiler", "media file not open!");
         return -1;
     }
+
+    int ret = avformat_find_stream_info(avformat_context_, nullptr);
+    if (ret < 0)
+    {
+        char err_buffer[AV_ERROR_MAX_STRING_SIZE];
+        av_strerror(ret, err_buffer, sizeof(err_buffer));
+        LOGD("Profiler", "find stream info, error info: %s,  error code: %d", err_buffer, ret);
+        return -1;
+    }
+
     LOGD("Profiler", "media file name: %s", avformat_context_->filename);
-    
-    //封装容器中，最长的时长，可能是音频或者视频的
-    int64_t media_duration =  avformat_context_->duration / AV_TIME_BASE;
+
+    // 封装容器中，最长的时长，可能是音频或者视频的
+    int64_t media_duration = avformat_context_->duration / AV_TIME_BASE;
     LOGD("Profiler", "media duration: %d", media_duration);
 
-    //封装容器 码率的总和
+    // 封装容器 码率的总和
     LOGD("Profiler", "media bit rate: %d", avformat_context_->bit_rate);
-
 
     LOGD("Profiler", "media nb stream: %d", avformat_context_->nb_streams);
 
-    //取这些流中最小的那个流的时间戳当作start_time
+    // 取这些流中最小的那个流的时间戳当作start_time
     LOGD("Profiler", "media start time: %d", avformat_context_->start_time);
+
+    LOGD("Profiler", "media start time: %d", avformat_context_->start_time);
+
+    LOGD("Profiler", "media info format: %s", avformat_context_->iformat->name);
+
+    LOGD("Profiler", "media info url: %s", avformat_context_->url);
+
+    LOGD("Profiler", "media info audio_codec_id: %d", avformat_context_->audio_codec_id);
+
+    int video_index = av_find_best_stream(avformat_context_, AVMEDIA_TYPE_VIDEO, -1, -1, nullptr, 0);
+    if (video_index < 0)
+    {
+        LOGD("Profiler", "find video index error");
+        return -1;
+    }
+
+    int audio_index = av_find_best_stream(avformat_context_, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
+    if (audio_index < 0)
+    {
+        LOGD("Profiler", "find audio index error");
+        return -1;
+    }
+
+    AVStream *video_stream = avformat_context_->streams[video_index];
+    AVStream *audio_stream = avformat_context_->streams[audio_index];
+
+    LOGD("Profiler", "=========================video info start===========================");
+    LOGD("Profiler", "video codec id : %s", avcodec_get_name(video_stream->codecpar->codec_id));
+    LOGD("Profiler", "voide codec width: %d", video_stream->codecpar->width);
+    LOGD("Profiler", "voide codec height: %d", video_stream->codecpar->height);
+    LOGD("Profiler", "voide codec bit rate: %d", video_stream->codecpar->bit_rate);
+    LOGD("Profiler", "voide codec format: %d", video_stream->codecpar->format);
+    LOGD("Profiler", "voide codec str format: %s", av_get_pix_fmt_name((enum AVPixelFormat)video_stream->codecpar->format));
+    LOGD("Profiler", "=========================video info end===========================");
 
     return 0;
 }

@@ -3,6 +3,7 @@
 #include "log/log.h"
 extern "C" {
     #include <libavformat/avformat.h>
+    #include <libavutil/pixdesc.h>
 }
 
 namespace wyan {
