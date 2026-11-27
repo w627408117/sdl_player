@@ -1,1 +1,4 @@
 [2026-11-27 13:08:56.116] [TID:5261] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] SDL Quit
+[2026-11-27 16:18:58.560] [TID:24885] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] open media file success
+[2026-11-27 16:19:25.098] [TID:25076] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] open media file success
+[2026-11-27 16:19:25.098] [TID:25076] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] file_name: ../media_test_20s.mp4
