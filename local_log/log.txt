@@ -165,3 +165,57 @@
 [2026-11-27 20:27:59.108] [TID:51696] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec bit rate: 1087956
 [2026-11-27 20:27:59.108] [TID:51696] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec format: 0
 [2026-11-27 20:27:59.108] [TID:51696] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec str format: yuv420p
+[2026-11-27 21:53:23.165] [TID:59933] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] open media file success
+[2026-11-27 21:53:23.178] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media file name: ../media_test_20s.mp4
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media duration: 20
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media bit rate: 1224956
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media nb stream: 2
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media start time: 0
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media start time: 0
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info format: mov,mp4,m4a,3gp,3g2,mj2
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info url: ../media_test_20s.mp4
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info audio_codec_id: 0
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================video info start===========================
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] video codec id : h264
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec width: 1280
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec height: 720
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec bit rate: 1087956
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec format: 0
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec str format: yuv420p
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================video info end===========================
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================audio info start===========================
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec id : aac
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec bit rate: 130227
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec format: 8
+[2026-11-27 21:53:23.179] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec str format: gray
+[2026-11-27 21:53:23.180] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec sample rate : 48000
+[2026-11-27 21:53:23.180] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec channel_layout : stereo
+[2026-11-27 21:53:23.180] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec frame_size : 1024
+[2026-11-27 21:53:23.180] [TID:59933] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================audio info end===========================
+[2026-11-27 21:57:08.947] [TID:60433] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] open media file success
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media file name: ../media_test_20s.mp4
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media duration: 20
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media bit rate: 1224956
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media nb stream: 2
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media start time: 0
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media start time: 0
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info format: mov,mp4,m4a,3gp,3g2,mj2
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info url: ../media_test_20s.mp4
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] media info audio_codec_id: 0
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================video info start===========================
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] video codec id : h264
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec width: 1280
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec height: 720
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec bit rate: 1087956
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec format: 0
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] voide codec str format: yuv420p
+[2026-11-27 21:57:08.960] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================video info end===========================
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================audio info start===========================
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec id : aac
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec bit rate: 130227
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec format: 8
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec str format: fltp
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec sample rate : 48000
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec channel_layout : stereo
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] audio codec frame_size : 1024
+[2026-11-27 21:57:08.961] [TID:60433] [Profiler] [I] [/home/wangyan/sdl_project/sdl_player/src/player/profiler/media_profiler.cc] =========================audio info end===========================

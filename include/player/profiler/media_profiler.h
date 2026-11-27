@@ -4,6 +4,8 @@
 extern "C" {
     #include <libavformat/avformat.h>
     #include <libavutil/pixdesc.h>
+    #include <libavutil/channel_layout.h>
+    #include <libavutil/samplefmt.h>
 }
 
 namespace wyan {

@@ -95,5 +95,23 @@ int MediaProfiler::profile_media()
     LOGD("Profiler", "voide codec str format: %s", av_get_pix_fmt_name((enum AVPixelFormat)video_stream->codecpar->format));
     LOGD("Profiler", "=========================video info end===========================");
 
+    LOGD("Profiler", "=========================audio info start===========================");
+    LOGD("Profiler", "audio codec id : %s", avcodec_get_name(audio_stream->codecpar->codec_id));
+    LOGD("Profiler", "audio codec bit rate: %d", audio_stream->codecpar->bit_rate);
+    LOGD("Profiler", "audio codec format: %d", audio_stream->codecpar->format);
+
+    enum AVSampleFormat sample_fmt = (enum AVSampleFormat)audio_stream->codecpar->format;
+    const char *fmt_name = av_get_sample_fmt_name(sample_fmt);
+    LOGD("Profiler", "audio codec str format: %s", fmt_name);
+    LOGD("Profiler", "audio codec sample rate : %d", audio_stream->codecpar->sample_rate);
+
+    int nb_channels = audio_stream->codecpar->channels;
+    uint64_t channel_layout = audio_stream->codecpar->channel_layout;
+    char layout_str[64];
+    av_get_channel_layout_string(layout_str, sizeof(layout_str), nb_channels, channel_layout);
+    LOGD("Profiler", "audio codec channel_layout : %s", layout_str);
+    LOGD("Profiler", "audio codec frame_size : %d", audio_stream->codecpar->frame_size);
+    LOGD("Profiler", "=========================audio info end===========================");
+
     return 0;
 }
