@@ -1,0 +1,1 @@
+[2026-11-27 13:08:56.116] [TID:5261] [Player] [I] [/home/wangyan/sdl_project/sdl_player/src/main/main.cc] SDL Quit
