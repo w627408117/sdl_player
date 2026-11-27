@@ -30,9 +30,14 @@ int main()
     // wyan_player.decodeAudio();
 
 
-    wyan::profiler::MediaProfiler media_profiler;
-    media_profiler.load_media_file("../media_test_20s.mp4");
-    media_profiler.profile_media();
+    // wyan::profiler::MediaProfiler media_profiler;
+    // media_profiler.load_media_file("../media_test_20s.mp4");
+    // media_profiler.profile_media();
+
+
+    
+
+    
 
     return EXIT_SUCCESS;
 }
