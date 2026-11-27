@@ -1,5 +1,6 @@
 #include "player/wyan_player.h"
 #include "log/log.h"
+#include <stdint.h>
 
 int main()
 {
@@ -26,5 +27,5 @@ int main()
     wyan_player.openAudioCodec();
     wyan_player.init_sdl_audio();
     wyan_player.decodeAudio();
-    return 0;
+    return EXIT_SUCCESS;
 }
