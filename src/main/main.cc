@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <SDL2/SDL.h>
 #include "player/profiler/media_profiler.h"
+#include "player/demuxer/demuxer.h"
 
 int main()
 {
@@ -35,9 +36,8 @@ int main()
     // media_profiler.profile_media();
 
 
-    
-
-    
+    wyan::demuxer::Demuxer dexmuxer("../media_test_20s.mp4");
+    dexmuxer.extract_video("../local_log/media_test_20s.yuv");
 
     return EXIT_SUCCESS;
 }
