@@ -1,0 +1,11 @@
+[2026-11-28 11:45:28.609] [TID:13287] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] open media file success
+[2026-11-28 11:45:28.609] [TID:13287] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio start
+[2026-11-28 11:48:27.811] [TID:13630] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] open media file success
+[2026-11-28 11:48:27.811] [TID:13630] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio start
+[2026-11-28 11:54:07.004] [TID:14790] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] open media file success
+[2026-11-28 11:54:07.004] [TID:14790] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio start
+[2026-11-28 12:18:21.969] [TID:17634] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] open media file success
+[2026-11-28 12:18:21.969] [TID:17634] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio
+[2026-11-28 12:20:20.297] [TID:18205] [Profile] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] open media file success
+[2026-11-28 12:20:20.297] [TID:18205] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio start
+[2026-11-28 12:20:20.355] [TID:18205] [Demuxer] [I] [/home/wangyan/sdl_project/sdl_player/src/player/demuxer/dexmuxer.cc] extract_audio finished successfully
