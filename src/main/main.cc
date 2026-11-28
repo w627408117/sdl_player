@@ -37,7 +37,7 @@ int main()
 
 
     wyan::demuxer::Demuxer dexmuxer("../media_test_20s.mp4");
-    dexmuxer.extract_video("../local_log/media_test_20s.yuv");
-
+    // dexmuxer.extract_video("../local_log/media_test_20s.yuv");
+    dexmuxer.extract_audio("../local_log/media_test_20s.aac");
     return EXIT_SUCCESS;
 }
